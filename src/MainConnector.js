@@ -8,7 +8,6 @@ import { messages } from "./pages/messages";
 import { authWrapper } from "./auth/AuthWrapper";
 
 export const MainConnector = authWrapper(class extends Component {
-
   selectComponent = (routeProps) => {
     const wrap = (Component) => <Component {...this.props}  {...routeProps}></Component>;
     if (!this.props.isAuthenticated) return wrap(signin);
