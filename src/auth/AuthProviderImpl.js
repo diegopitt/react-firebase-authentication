@@ -16,17 +16,26 @@ export class AuthProviderImpl extends Component {
   authListener() {
     this.fireBaseListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({
-          isAuthenticated: true,
-          userID: user.uid,
-          user: user
-        })
+        console.log('saving user');
+        localStorage.setItem('user', user);
+        localStorage.setItem('isAuthenticated', true);
+        localStorage.setItem('userID', user.uid);
+        // this.setState({
+        //   isAuthenticated: true,
+        //   userID: user.uid,
+        //   user: user
+        // })
       } else {
-        this.setState({
-          isAuthenticated: false,
-          userID: null, 
-          accountType: null
-        });
+        console.log('removing user');
+        localStorage.removeItem('user');
+        localStorage.setItem('isAuthenticated', false);
+        localStorage.removeItem('userID');
+        // this.setState({
+        //   isAuthenticated: false,
+        //   userID: null, 
+        //   accountType: null,
+        //   user: {}
+        // });
       }
     });
   }
