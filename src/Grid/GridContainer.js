@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import withStyles from "@material-ui/core/styles/withStyles";
 const style = {
   grid: {
-    margin: "0 -15px !important",
-    width: "unset"
+    margin: "15px 0px !important",
+    width: "unset",
   }
 };
 
