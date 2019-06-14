@@ -100,10 +100,11 @@ const useStyles = makeStyles(theme => ({
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
+    marginTop: '64px',
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    paddingBottom: 60
+    marginBottom: '64px'
   },
   paper: {
     padding: theme.spacing(2),
@@ -113,6 +114,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 export default function App() {
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -124,6 +126,7 @@ export default function App() {
       setOpen(false);
     }
   };
+  
   function SimpleBottomNavigation() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
