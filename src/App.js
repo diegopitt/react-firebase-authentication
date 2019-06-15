@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { BrowserRouter as Router, Route, Switch, Redirect, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { AuthProviderImpl } from "./auth/AuthProviderImpl";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,8 +8,6 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import List from '@material-ui/core/List';
 import MediaQuery from 'react-responsive';
@@ -21,12 +19,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MenuClose from '@material-ui/icons/Close';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { MainConnector } from "./MainConnector";
+import Footernav from "./layout/Footernav";
 const drawerWidth = '80%';
 
 const useStyles = makeStyles(theme => ({
@@ -93,14 +89,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
-  SBNav: {
-    width: '100%',
-    position: 'fixed',
-    bottom: 0
-  },
   appBarSpacer: theme.mixins.toolbar,
   content: {
-    marginTop: '64px',
+    marginTop: '34px',
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
@@ -126,23 +117,6 @@ export default function App() {
       setOpen(false);
     }
   };
-  
-  function SimpleBottomNavigation() {
-    const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-    return (
-      <BottomNavigation value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        showLabels
-        className={classes.SBNav}>
-        <BottomNavigationAction component={Link} to="/" value="home" label="Home" icon={<DashboardIcon />} />
-        <BottomNavigationAction component={Link} to="/orders" value="orders" label="Orders" icon={<ShoppingCartIcon />} />
-        <BottomNavigationAction component={Link} to="/contact" label="contacts" icon={<PeopleIcon />} />
-      </BottomNavigation>
-    );
-  }
   return (
     <Router history={Router.hashHistory} >
       <div className={classes.root}>
@@ -185,18 +159,14 @@ export default function App() {
             </MediaQuery>
           </Toolbar>
           <MediaQuery query="(max-width: 767px)">
-            <SimpleBottomNavigation className={classes.SBNav} />
+            <Footernav />
           </MediaQuery>
         </AppBar>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <AuthProviderImpl>
-            <Router>
-              <Switch>
-                <Route path="/dashboard" component={MainConnector} />
-                <Redirect to="/dashboard/jobs" />
-              </Switch>
-            </Router>
+            <Redirect from="/" to="/dashboard/jobs" />
+            <Route path="/dashboard" component={MainConnector} />
           </AuthProviderImpl>
           <div className={classes.appBarSpacer} />
         </main>
