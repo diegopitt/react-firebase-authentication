@@ -21,7 +21,6 @@ const useStyles = makeStyles({
   selected: {}
 });
 function Footernav({ match }) {
-  console.log(match);
   const classes = useStyles();
   const [value, setValue] = useState(0);
   //const { match, location, history } = props;

@@ -8,8 +8,11 @@ const App = () => {
   return (
     <Router history={Router.hashHistory} >
       <AuthProviderImpl>
-        <Route path="/dashboard" component={MainConnector} />
-        <Route path="/login" component={login} />
+        <Switch>
+          <Redirect exact from="/" to="/dashboard/jobs" />
+          <Route path="/dashboard" component={MainConnector} />
+          <Route path="/login" component={login} />
+        </Switch>
       </AuthProviderImpl>
     </Router>
   );
