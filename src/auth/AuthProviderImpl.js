@@ -7,9 +7,9 @@ export class AuthProviderImpl extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false,
-      userID: null,
-      accountType: null,
+      isAuthenticated: localStorage.getItem('isAuthenticated'),
+      userID: localStorage.getItem('userID'),
+      user: localStorage.getItem('user'),
       dbRef: firebase.database()
     }
   }
@@ -20,39 +20,46 @@ export class AuthProviderImpl extends Component {
         localStorage.setItem('user', user);
         localStorage.setItem('isAuthenticated', true);
         localStorage.setItem('userID', user.uid);
-        // this.setState({
-        //   isAuthenticated: true,
-        //   userID: user.uid,
-        //   user: user
-        // })
+        this.setState({
+          isAuthenticated: true,
+          userID: user.uid,
+          user: user
+        })
       } else {
-        console.log('removing user');
+        console.log('user removed');
         localStorage.removeItem('user');
         localStorage.setItem('isAuthenticated', false);
         localStorage.removeItem('userID');
-        // this.setState({
-        //   isAuthenticated: false,
-        //   userID: null, 
-        //   accountType: null,
-        //   user: {}
-        // });
+        this.setState({
+          isAuthenticated: false,
+          userID: null, 
+          accountType: null,
+          user: {}
+        });
       }
     });
   }
   authenticate = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
+      localStorage.setItem('user', firebase.auth().currentUser);
+      localStorage.setItem('isAuthenticated', true);
+      localStorage.setItem('userID', user.uid);
       this.setState({
         isAuthenticated: true,
-        userID: firebase.auth().currentUser.uid,
+        userID: user.uid,
         user: firebase.auth().currentUser
       })
+      return user;
     }).catch((error) => {
       console.log(error.message);
     });
   }
   signout = () => {
-      firebase.auth().signOut().then(() => {
-        this.setState({ isAuthenticated: false, userID: null, accountType: null });
+    firebase.auth().signOut().then(() => {
+      localStorage.removeItem('user');
+      localStorage.setItem('isAuthenticated', false);
+      localStorage.removeItem('userID');
+      this.setState({ isAuthenticated: false, userID: null, accountType: null });
   }).catch(function(error) {
     console.log(error);
   });

@@ -8,7 +8,21 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
 // core components
-import cardBodyStyle from "assets/jss/material-dashboard-react/components/cardBodyStyle.jsx";
+const cardBodyStyle = {
+  cardBody: {
+    padding: "0.9375rem 20px",
+    flex: "1 1 auto",
+    WebkitBoxFlex: "1",
+    position: "relative"
+  },
+  cardBodyPlain: {
+    paddingLeft: "5px",
+    paddingRight: "5px"
+  },
+  cardBodyProfile: {
+    marginTop: "15px"
+  }
+};
 
 function CardBody({ ...props }) {
   const { classes, className, children, plain, profile, ...rest } = props;

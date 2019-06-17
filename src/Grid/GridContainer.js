@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 const style = {
   grid: {
     margin: "0px !important",
-    width: "unset",
+    width: "unset"
   }
 };
 

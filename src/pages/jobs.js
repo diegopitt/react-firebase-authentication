@@ -6,6 +6,7 @@ import Card from "../Card/Card.js";
 import CardHeader from "../Card/CardHeader.js";
 import CardIcon from "../Card/CardIcon.js";
 import CardFooter from "../Card/CardFooter.js";
+import CardBody from "../Card/CardBody.js";
 import Store from "@material-ui/icons/Store";
 import Warning from "@material-ui/icons/Warning";
 import DateRange from "@material-ui/icons/DateRange";
@@ -95,13 +96,12 @@ const dashboardStyle = {
 };
 class jobs extends Component {
   render() {
-    console.log(this.props.isAuthenticated.toString())
     const { classes } = this.props;
     return (
       <div>
         <GridContainer>
           <GridItem xs={12} sm={6} md={3}>
-            <Card>
+            <Card onClick={() => { this.props.history.push('/dashboard/jobs/1') }}>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
                   <Store />
@@ -122,7 +122,7 @@ class jobs extends Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
-            <Card>
+            <Card onClick={() => { this.props.history.push('/dashboard/jobs/2') }}>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Store />
@@ -139,7 +139,7 @@ class jobs extends Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
-            <Card>
+            <Card onClick={() => { this.props.history.push('/dashboard/jobs/3') }}>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
                   <Store />
@@ -156,7 +156,7 @@ class jobs extends Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
-            <Card>
+            <Card onClick={() => { this.props.history.push('/dashboard/jobs/4') }}>
               <CardHeader color="info" stats icon>
                 <CardIcon color="info">
                   <Accessibility />
@@ -170,6 +170,34 @@ class jobs extends Component {
                   Just Updated
                 </div>
               </CardFooter>
+            </Card>
+          </GridItem>
+        </GridContainer>
+        <GridContainer>
+          <GridItem xs={12} sm={12} md={6}>
+            <Card>
+              <CardHeader color="primary">
+                <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+                <p className={classes.cardCategoryWhite}>
+                  New employees on 15th September, 2016
+                </p>
+              </CardHeader>
+              <CardBody>
+                <p>Another content</p>
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={6}>
+            <Card>
+              <CardHeader color="warning">
+                <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+                <p className={classes.cardCategoryWhite}>
+                  New employees on 15th September, 2016
+                </p>
+              </CardHeader>
+              <CardBody>
+                <p>Some content</p>
+              </CardBody>
             </Card>
           </GridItem>
         </GridContainer>

@@ -13,10 +13,16 @@ const useStyles = makeStyles({
     bottom: '0',
     width: '100%',
   },
+  buttons: {
+    "&$selected": {
+      color: "#CC3300",
+    }
+  },
+  selected: {}
 });
-function Footernav({ ...props }) {
-  //console.log(props);
-  const classes = useStyles(props);
+function Footernav({ match }) {
+  console.log(match);
+  const classes = useStyles();
   const [value, setValue] = useState(0);
   //const { match, location, history } = props;
   return (
@@ -26,9 +32,18 @@ function Footernav({ ...props }) {
       }}
       showLabels
       className={classes.root}>
-      <BottomNavigationAction component={Link} to="jobs" value="home" label="Home" icon={<DashboardIcon />} />
-      <BottomNavigationAction component={Link} to="proposals" value="proposals" icon={<ShoppingCartIcon />} />
-      <BottomNavigationAction component={Link} to="contracts" label="contracts" icon={<PeopleIcon />} />
+      <BottomNavigationAction classes={{
+        root: classes.buttons,
+        selected: classes.selected
+      }} component={Link} to={`jobs`} label="Home" value="home" icon={<DashboardIcon />} />
+      <BottomNavigationAction classes={{
+        root: classes.buttons,
+        selected: classes.selected
+      }} component={Link} to={`proposals`} label="Proposals" value="proposals" icon={<ShoppingCartIcon />} />
+      <BottomNavigationAction classes={{
+        root: classes.buttons,
+        selected: classes.selected
+      }} component={Link} to={`contracts`} label="Contracts" value="contracts" icon={<PeopleIcon />} />
     </BottomNavigation>
   );
 }
