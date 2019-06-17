@@ -9,8 +9,9 @@ import { authWrapper } from "./auth/AuthWrapper";
 
 export const MainConnector = authWrapper(class extends Component {
   selectComponent = (routeProps) => {
+    console.log(localStorage.getItem('isAuthenticated'));
     const wrap = (Component) => <Component {...this.props}  {...routeProps}></Component>;
-    if (!this.props.isAuthenticated) return <Redirect to="/login" />;
+    if (!localStorage.getItem('isAuthenticated')) return <Redirect to="/login" />;
     switch (routeProps.match.params.section) {
       case "jobs":
         return wrap(jobs);
@@ -21,7 +22,7 @@ export const MainConnector = authWrapper(class extends Component {
       case "messages":
         return wrap(messages);
       default:
-        return <Redirect to="xxx" />
+        return <Redirect to="/notfound" />
     }
   }
 

@@ -28,7 +28,7 @@ export class AuthProviderImpl extends Component {
       } else {
         console.log('user removed');
         localStorage.removeItem('user');
-        localStorage.setItem('isAuthenticated', false);
+        localStorage.removeItem('isAuthenticated');
         localStorage.removeItem('userID');
         this.setState({
           isAuthenticated: false,
@@ -57,7 +57,7 @@ export class AuthProviderImpl extends Component {
   signout = () => {
     firebase.auth().signOut().then(() => {
       localStorage.removeItem('user');
-      localStorage.setItem('isAuthenticated', false);
+      localStorage.removeItem('isAuthenticated');
       localStorage.removeItem('userID');
       this.setState({ isAuthenticated: false, userID: null, accountType: null });
   }).catch(function(error) {

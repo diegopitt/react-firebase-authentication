@@ -10,7 +10,7 @@ export const login = authWrapper(class extends Component {
   }
   async handleSubmit(formData) {
     this.props.authenticate(formData.email, formData.password).then(function () {
-      this.props.history.push('/dashbord/jobs');
+      this.props.history.push('/dashboard/jobs');
     }.bind(this));
     
   }
