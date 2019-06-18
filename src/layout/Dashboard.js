@@ -1,8 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-//import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { Switch, Route, Redirect } from "react-router-dom";
-//import { AuthProviderImpl } from "../auth/AuthProviderImpl";
+import { Switch, Route } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -27,7 +25,6 @@ import jobs from "../pages/jobs"
 import job from "../pages/job"
 import proposals from "../pages/proposals";
 import contracts from "../pages/contracts";
-import { messages } from "../pages/messages";
 const drawerWidth = '80%';
 
 const useStyles = makeStyles(theme => ({
@@ -168,10 +165,10 @@ const Dashboard = () => {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Switch>
-          <Route exact path="/dashboard/jobs" component={jobs} />
-          <Route path="/dashboard/proposals" component={proposals} />
-          <Route path="/dashboard/contracts" component={contracts} />
-          <Route path="/dashboard/jobs/:jobID?" component={job} />
+            <Route exact path="/dashboard/jobs" component={jobs} />
+            <Route path="/dashboard/proposals" component={proposals} />
+            <Route path="/dashboard/contracts" component={contracts} />
+            <Route path="/dashboard/jobs/:jobID?" component={job} />
         </Switch>
           <div className={classes.appBarSpacer} />
         </main>
@@ -180,8 +177,7 @@ const Dashboard = () => {
           variant="temporary"
           classes={{ paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose), }}
           open={open}
-          anchor="right"
-        >
+          anchor="right">
           <div className={classes.toolbar}>
             <IconButton
               edge="start"

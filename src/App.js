@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { AuthProviderImpl } from "./auth/AuthProviderImpl";
 import { MainConnector } from "./MainConnector";
-import { login } from "./pages/login";
+import login from "./pages/login";
 
 const App = () => {
   return (
