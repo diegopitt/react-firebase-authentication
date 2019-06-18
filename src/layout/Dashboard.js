@@ -25,8 +25,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Footernav from "./Footernav";
 import jobs from "../pages/jobs"
 import job from "../pages/job"
-import { proposals } from "../pages/proposals";
-import { contracts } from "../pages/contracts";
+import proposals from "../pages/proposals";
+import contracts from "../pages/contracts";
 import { messages } from "../pages/messages";
 const drawerWidth = '80%';
 
@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
-    marginTop: '34px',
+    marginTop: '44px',
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
@@ -170,6 +170,7 @@ const Dashboard = () => {
           <Switch>
           <Route exact path="/dashboard/jobs" component={jobs} />
           <Route path="/dashboard/proposals" component={proposals} />
+          <Route path="/dashboard/contracts" component={contracts} />
           <Route path="/dashboard/jobs/:jobID?" component={job} />
         </Switch>
           <div className={classes.appBarSpacer} />
