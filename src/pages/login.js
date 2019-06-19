@@ -19,18 +19,27 @@ const styles = theme => ({
     marginBottom: theme.spacing(2)
   },
   BubbleFooter: {
+    textAlign: 'right',
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2)
-  }
+  },
+  Button: {
+    color: '#ffffff',
+    width: '160px',
+    backgroundColor: '#CC3300',
+    '&:hover': {
+      backgroundColor: '#d34f2d',
+    },
+  },
 });
 
 const login = authWrapper(class extends Component {
   state = {
     values: {
-      password: '',
-      email: ''
+      password: 'password',
+      email: 'demo@demo.com'
     }
   };
   handleFieldChange = (field, value) => {
@@ -53,7 +62,7 @@ const login = authWrapper(class extends Component {
     const { classes, className, history, location, match } = this.props;
     const { values } = this.state;
     const rootClassName = classNames(classes.root, className);
-    return <GridContainer style={{ minHeight: '100vh' }} container
+    return <GridContainer style={{ minHeight: '100vh', backgroundColor: '#d34f2d' }} container
       spacing={0}
       direction="column"
       alignItems="center"
@@ -87,7 +96,7 @@ const login = authWrapper(class extends Component {
             </form>
           </BubbleContent>
           <BubbleFooter className={classes.BubbleFooter}>
-            <Button color="primary" variant="outlined" onClick={this.handleSubmit.bind(this)}>Next</Button>
+            <Button className={classes.Button} variant="contained" onClick={this.handleSubmit.bind(this)}>Next</Button>
           </BubbleFooter>
         </Bubble>
       </GridItem>

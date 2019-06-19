@@ -13,6 +13,7 @@ import DateRange from "@material-ui/icons/DateRange";
 import LocalOffer from "@material-ui/icons/LocalOffer";
 import Update from "@material-ui/icons/Update";
 import withStyles from "@material-ui/core/styles/withStyles";
+import DataTable from "../Table/Table.js";
 import Accessibility from "@material-ui/icons/Accessibility";
 import {
   successColor,
@@ -196,7 +197,30 @@ class jobs extends Component {
                 </p>
               </CardHeader>
               <CardBody>
-                <p>Some content</p>
+                <DataTable
+                  tableHeaderColor="danger"
+                  tableHead={["ID", "Name", "Country", "City", "Salary"]}
+                  tableData={[
+                    ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
+                    ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
+                    ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
+                    [
+                      "4",
+                      "Philip Chaney",
+                      "$38,735",
+                      "Korea, South",
+                      "Overland Park"
+                    ],
+                    [
+                      "5",
+                      "Doris Greene",
+                      "$63,542",
+                      "Malawi",
+                      "Feldkirchen in Kärnten"
+                    ],
+                    ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
+                  ]}
+                />
               </CardBody>
             </Card>
           </GridItem>

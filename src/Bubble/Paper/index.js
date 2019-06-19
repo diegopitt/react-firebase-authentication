@@ -13,7 +13,7 @@ const styles = theme => {
       borderRadius: 0
     },
     outlined: {
-      border: `1px solid #DADCE0`
+      border: `1px solid #CC3300`
     }
   };
 };

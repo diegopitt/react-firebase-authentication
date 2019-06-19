@@ -9,7 +9,8 @@ const styles = theme => ({
     paddingTop: theme.spacing(1),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    borderTop: `1px solid #DADCE0`,
+    backgroundColor: '#CC3300',
+    borderTop: `1px solid #CC3300`,
     borderBottomLeftRadius: '2px',
     borderBottomRightRadius: '2px'
   },

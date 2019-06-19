@@ -6,7 +6,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "../Card/Card.js";
 import CardHeader from "../Card/CardHeader.js";
 import CardBody from "../Card/CardBody.js";
-
 const Style = {
   cardCategoryWhite: {
     color: '#ffffff',
