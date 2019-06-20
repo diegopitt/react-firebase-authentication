@@ -43,7 +43,7 @@ function contracts(props) {
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
         <Card>
-          <CardHeader color="danger">
+          <CardHeader color="success">
             <h4 className={classes.cardTitleWhite}>Your active contracts</h4>
             <p className={classes.cardCategoryWhite}>
               Contacts list
@@ -51,7 +51,7 @@ function contracts(props) {
           </CardHeader>
           <CardBody>
             <DataTable
-              tableHeaderColor="danger"
+              tableHeaderColor="success"
               tableHead={["ID", "Name", "Country", "City", "Salary"]}
               tableData={[
                 ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],

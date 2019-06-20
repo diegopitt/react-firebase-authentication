@@ -13,7 +13,9 @@ import { authWrapper } from "../auth/AuthWrapper";
 
 const styles = theme => ({
   root: {},
-  form: {},
+  form: {
+    paddingTop: '20px'
+  },
   textField: {
     width: '100%',
     marginBottom: theme.spacing(2)
@@ -39,20 +41,28 @@ const login = authWrapper(class extends Component {
   state = {
     values: {
       password: 'password',
-      email: 'demo@demo.com'
+      email: 'demo@demo.com',
+      disabled: false
     }
   };
   handleFieldChange = (field, value) => {
     const newState = { ...this.state };
     newState.values[field] = value;
-    this.setState(newState, this.validateForm);
+    this.setState(newState);
   };
 
   async handleSubmit() {
-    this.props.authenticate(this.state.values.email, this.state.values.password).then(function () {
-      this.props.history.push('/dashboard/jobs');
+    const newState = { ...this.state };
+    newState.values['disabled'] = true;
+    this.setState(newState);
+    this.props.authenticate(this.state.values.email, this.state.values.password).then(function (user) {
+      if (user) {
+        this.props.history.push('/dashboard/jobs');
+      } else {
+        newState.values['disabled'] = false;
+        this.setState(newState);
+      }
     }.bind(this));
-
   }
   handleSignOut() {
     this.props.signout();
@@ -84,7 +94,7 @@ const login = authWrapper(class extends Component {
               />
               <TextField
                 className={classes.textField}
-                label="Password"
+                label="Enter your password"
                 name="password"
                 onChange={event =>
                   this.handleFieldChange('password', event.target.value)
@@ -96,7 +106,7 @@ const login = authWrapper(class extends Component {
             </form>
           </BubbleContent>
           <BubbleFooter className={classes.BubbleFooter}>
-            <Button className={classes.Button} variant="contained" onClick={this.handleSubmit.bind(this)}>Next</Button>
+            <Button disabled={this.state.values.disabled} className={classes.Button} variant="contained" onClick={this.handleSubmit.bind(this)}>Next</Button>
           </BubbleFooter>
         </Bubble>
       </GridItem>

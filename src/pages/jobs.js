@@ -198,7 +198,7 @@ class jobs extends Component {
               </CardHeader>
               <CardBody>
                 <DataTable
-                  tableHeaderColor="danger"
+                  tableHeaderColor="warning"
                   tableHead={["ID", "Name", "Country", "City", "Salary"]}
                   tableData={[
                     ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],

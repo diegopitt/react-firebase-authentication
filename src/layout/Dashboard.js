@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { Switch, Route } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
+import Popover from '@material-ui/core/Popover';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuClose from '@material-ui/icons/Close';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -25,6 +26,8 @@ import jobs from "../pages/jobs"
 import job from "../pages/job"
 import proposals from "../pages/proposals";
 import contracts from "../pages/contracts";
+import { getNotifications } from '../Notifications/data.js';
+import Notifications from '../Notifications';
 const drawerWidth = '80%';
 
 const useStyles = makeStyles(theme => ({
@@ -93,11 +96,11 @@ const useStyles = makeStyles(theme => ({
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
-    marginTop: '44px',
+    paddingTop: '28px',
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    marginBottom: '64px'
+    PaddingBottom: '64px'
   },
   paper: {
     padding: theme.spacing(2),
@@ -108,8 +111,24 @@ const useStyles = makeStyles(theme => ({
 }));
 const Dashboard = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [notificationsEl, setNotificationsEl] = useState(null);
+  const [notificationsCount, setNotificationsCount] = useState(0);
+  const [notifications, setNotifications] = useState([]);
+  const showNotifications = Boolean(notificationsEl);
+  useEffect(() => {
+    const fetchData = async () => {
+      const notificationsLimit = 4;
+      const { notifications, notificationsCount } = await getNotifications(notificationsLimit);
+      setNotifications(notifications);
+      setNotificationsCount(notificationsCount);
+    };
+    fetchData();
+  }, []);
 
+  const handleCloseNotifications = () => {
+    setNotificationsEl(null);
+  };
   const toggleDrawer = () => {
     console.log('open');
     if (!open) {
@@ -118,94 +137,121 @@ const Dashboard = () => {
       setOpen(false);
     }
   };
+  const handleShowNotifications = event => {
+    setNotificationsEl(event.currentTarget);
+  };
+
   return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position="absolute" className={clsx(classes.appBar)}>
-          <Toolbar className={classes.toolbar}>
-            <MediaQuery query="(min-width: 767px)">
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={toggleDrawer}
-                className={clsx(classes.menuButton)}>
-                <MenuIcon />
-              </IconButton>
-            </MediaQuery>
-            <MediaQuery query="(min-width: 767px)">
-              <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                Market
-              </Typography>
-            </MediaQuery>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-            <MediaQuery query="(min-width: 767px)">
-              <IconButton color="inherit" className={classes.alert}>
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-            </MediaQuery>
-          </Toolbar>
-          <MediaQuery query="(max-width: 767px)">
-            <Footernav />
-          </MediaQuery>
-        </AppBar>
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Switch>
-            <Route exact path="/dashboard/jobs" component={jobs} />
-            <Route path="/dashboard/proposals" component={proposals} />
-            <Route path="/dashboard/contracts" component={contracts} />
-            <Route path="/dashboard/jobs/:jobID?" component={job} />
-        </Switch>
-          <div className={classes.appBarSpacer} />
-        </main>
-        <Drawer
-          className={classes.drawer}
-          variant="temporary"
-          classes={{ paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose), }}
-          open={open}
-          anchor="right">
-          <div className={classes.toolbar}>
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="absolute" className={clsx(classes.appBar)}>
+        <Toolbar className={classes.toolbar}>
+          <MediaQuery query="(min-width: 767px)">
             <IconButton
               edge="start"
               color="inherit"
               aria-label="Open drawer"
               onClick={toggleDrawer}
               className={clsx(classes.menuButton)}>
-              <MenuClose />
+              <MenuIcon />
             </IconButton>
+          </MediaQuery>
+          <MediaQuery query="(min-width: 767px)">
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              Market
+              </Typography>
+          </MediaQuery>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+            />
           </div>
-          <Divider />
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-      </div>
+          <IconButton
+            className={classes.notificationsButton}
+            onClick={handleShowNotifications}
+          >
+            <Badge
+              badgeContent={notificationsCount}
+              color="primary"
+              variant="dot"
+            >
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+        </Toolbar>
+        <Popover
+          anchorEl={notificationsEl}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center'
+          }}
+          onClose={handleCloseNotifications}
+          open={showNotifications}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+        >
+          <Notifications
+            notifications={notifications}
+            onSelect={handleCloseNotifications}
+          />
+        </Popover>
+        <MediaQuery query="(max-width: 767px)">
+          <Footernav />
+        </MediaQuery>
+      </AppBar>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Switch>
+          <Route exact path="/dashboard/jobs" component={jobs} />
+          <Route path="/dashboard/proposals" component={proposals} />
+          <Route path="/dashboard/contracts" component={contracts} />
+          <Route path="/dashboard/jobs/:jobID?" component={job} />
+        </Switch>
+        <div className={classes.appBarSpacer} />
+      </main>
+      <Drawer
+        className={classes.drawer}
+        variant="temporary"
+        classes={{ paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose), }}
+        open={open}
+        anchor="right">
+        <div className={classes.toolbar}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="Open drawer"
+            onClick={toggleDrawer}
+            className={clsx(classes.menuButton)}>
+            <MenuClose />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </div>
   );
 }
 export default Dashboard;
