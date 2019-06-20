@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core';
 import { Button, Divider, List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import { ArrowForwardIos as ArrowForwardIosIcon, Payment as PaymentIcon, PeopleOutlined as PeopleIcon, Code as CodeIcon, Store as StoreIcon } from '@material-ui/icons';
 import styles from './styles';
+import empty from "../assets/images/empty.png"
 
 const icons = {
   order: {
@@ -65,7 +66,7 @@ class Notifications extends Component {
         ) : (
             <div className={classes.empty}>
               <div className={classes.emptyImageWrapper}>
-                <img alt="Empty list" className={classes.emptyImage} src="../src/assets/images/empty.png" />
+                <img alt="Empty list" className={classes.emptyImage} src={empty} />
               </div>
               <Typography variant="h4">There's nothing here...</Typography>
             </div>

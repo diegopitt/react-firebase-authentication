@@ -109,6 +109,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
   }
 }));
+
 const Dashboard = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -129,14 +130,15 @@ const Dashboard = () => {
   const handleCloseNotifications = () => {
     setNotificationsEl(null);
   };
+
   const toggleDrawer = () => {
-    console.log('open');
     if (!open) {
       setOpen(true);
     } else {
       setOpen(false);
     }
   };
+
   const handleShowNotifications = event => {
     setNotificationsEl(event.currentTarget);
   };
@@ -147,12 +149,7 @@ const Dashboard = () => {
       <AppBar position="absolute" className={clsx(classes.appBar)}>
         <Toolbar className={classes.toolbar}>
           <MediaQuery query="(min-width: 767px)">
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={toggleDrawer}
-              className={clsx(classes.menuButton)}>
+            <IconButton edge="start" color="inherit" aria-label="Open drawer" onClick={toggleDrawer} className={clsx(classes.menuButton)}>
               <MenuIcon />
             </IconButton>
           </MediaQuery>
@@ -165,44 +162,21 @@ const Dashboard = () => {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
+            <InputBase placeholder="Search…" classes={{ root: classes.inputRoot, input: classes.inputInput }} />
           </div>
-          <IconButton
-            className={classes.notificationsButton}
-            onClick={handleShowNotifications}
-          >
-            <Badge
-              badgeContent={notificationsCount}
-              color="primary"
-              variant="dot"
-            >
+          <IconButton className={classes.notificationsButton} onClick={handleShowNotifications}>
+            <Badge badgeContent={notificationsCount} color="primary" variant="dot">
               <NotificationsIcon />
             </Badge>
           </IconButton>
         </Toolbar>
         <Popover
           anchorEl={notificationsEl}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center'
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center'}}
           onClose={handleCloseNotifications}
           open={showNotifications}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center'
-          }}
-        >
-          <Notifications
-            notifications={notifications}
-            onSelect={handleCloseNotifications}
-          />
+          transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
+          <Notifications notifications={notifications} onSelect={handleCloseNotifications} />
         </Popover>
         <MediaQuery query="(max-width: 767px)">
           <Footernav />
@@ -225,12 +199,7 @@ const Dashboard = () => {
         open={open}
         anchor="right">
         <div className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={toggleDrawer}
-            className={clsx(classes.menuButton)}>
+          <IconButton edge="start" color="inherit" aria-label="Open drawer" onClick={toggleDrawer} className={clsx(classes.menuButton)}>
             <MenuClose />
           </IconButton>
         </div>

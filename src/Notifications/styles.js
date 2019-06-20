@@ -1,3 +1,4 @@
+import Background from "../assets/images/connected_world.svg"
 export default theme => ({
   root: {
     width: '350px',
@@ -6,7 +7,7 @@ export default theme => ({
   },
   header: {
     backgroundColor: theme.palette.background.default,
-    backgroundImage: 'url("/images/connected_world.svg")',
+    backgroundImage: `url(${Background})`,
     backgroundPositionX: 'right',
     backgroundPositionY: 'center',
     backgroundRepeat: 'no-repeat',
