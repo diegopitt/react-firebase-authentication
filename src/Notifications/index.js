@@ -9,19 +9,19 @@ import styles from './styles';
 
 const icons = {
   order: {
-    icon: <PaymentIcon />,
+    icon: <PaymentIcon style={{ width: '22px', height: '22px' }} />,
     color: 'blue'
   },
   user: {
-    icon: <PeopleIcon />,
+    icon: <PeopleIcon style={{ width: '22px', height: '22px' }} />,
     color: 'red'
   },
   product: {
-    icon: <StoreIcon />,
+    icon: <StoreIcon style={{ width: '22px', height: '22px' }} />,
     color: 'green'
   },
   feature: {
-    icon: <CodeIcon />,
+    icon: <CodeIcon style={{ width: '22px', height: '22px' }} />,
     color: 'purple'
   }
 };
@@ -35,7 +35,7 @@ class Notifications extends Component {
         {notifications.length > 0 ? (
           <Fragment>
             <div className={classes.header}>
-              <Typography variant="h6">User Notifications</Typography>
+              <Typography className={classes.listItemTextPrimary}>User Notifications</Typography>
               <Typography className={classes.subtitle} variant="body2">
                 {notifications.length} new notifications
               </Typography>
@@ -45,7 +45,7 @@ class Notifications extends Component {
                 {notifications.map(notification => (
                   <Link key={notification.id} to="#" style={{ textDecoration: 'none' }}>
                     <ListItem className={classes.listItem} component="div" onClick={onSelect}>
-                      <ListItemIcon className={classes.listItemIcon} style={{ color: icons[notification.type].color }}>
+                      <ListItemIcon className={classes.listItemIcon} style={{ color: icons[notification.type].color, width: "42px" }}>
                         {icons[notification.type].icon}
                       </ListItemIcon>
                       <ListItemText classes={{ primary: classes.listItemTextPrimary, secondary: classes.listItemTextSecondary }} primary={notification.title} secondary={notification.when} />

@@ -29,6 +29,7 @@ export default theme => ({
   },
   listItemIcon: {
     backgroundColor: 'rgba(0, 0, 0, 0.03)',
+    minWidth: '42px',
     padding: '10px',
     borderRadius: '50%',
     marginRight: theme.spacing(2)

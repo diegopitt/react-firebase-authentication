@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { AuthProviderImpl } from "./auth/AuthProviderImpl";
 import { MainConnector } from "./MainConnector";
 import login from "./pages/login";
-
 const App = () => {
   return (
     <Router history={Router.hashHistory} >
