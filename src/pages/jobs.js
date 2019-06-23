@@ -8,7 +8,6 @@ import CardIcon from "../Card/CardIcon.js";
 import CardFooter from "../Card/CardFooter.js";
 import CardBody from "../Card/CardBody.js";
 import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
 import DateRange from "@material-ui/icons/DateRange";
 import LocalOffer from "@material-ui/icons/LocalOffer";
 import Update from "@material-ui/icons/Update";
@@ -20,7 +19,6 @@ import BubbleHeader from "../Bubble/BubbleHeader.js";
 import BubbleContent from "../Bubble/BubbleContent.js";
 import BubbleLabel from "../Bubble/BubbleLabel.js";
 import BubbleFooter from "../Bubble/BubbleFooter.js";
-import classNames from 'classnames';
 import { successColor, whiteColor, grayColor, hexToRgb } from "../design.js";
 
 const dashboardStyle = theme => ({
@@ -105,7 +103,7 @@ const dashboardStyle = theme => ({
 });
 class jobs extends Component {
   render() {
-    const { classes, className } = this.props;
+    const { classes } = this.props;
     return (
       <div>
         <GridContainer>
@@ -187,10 +185,10 @@ class jobs extends Component {
                 <BubbleLabel scolor="#535a60" tcolor="#cc3300" subtitle="Tuesday, June 25" title="Market Details" />
               </BubbleHeader>
               <BubbleContent>
-                <p>ddd</p>
+                <p>Content</p>
               </BubbleContent>
               <BubbleFooter>
-                <p>ddd</p>
+                <p>Footer</p>
               </BubbleFooter>
             </Bubble>
           </GridItem>

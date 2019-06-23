@@ -21,7 +21,6 @@ const styles = theme => ({
 
 const BubbleFooter = props => {
   const { classes, className, noDivider, children, ...rest } = props;
-  console.log(props);
   const rootClassName = classNames(
     {
       [classes.root]: true,

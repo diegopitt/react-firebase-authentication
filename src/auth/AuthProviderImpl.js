@@ -16,7 +16,7 @@ export class AuthProviderImpl extends Component {
   authListener() {
     this.fireBaseListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('saving user');
+        //console.log('saving user');
         localStorage.setItem('user', user);
         localStorage.setItem('isAuthenticated', true);
         localStorage.setItem('userID', user.uid);
@@ -26,7 +26,7 @@ export class AuthProviderImpl extends Component {
           user: user
         })
       } else {
-        console.log('user removed');
+        //console.log('user removed');
         localStorage.removeItem('user');
         localStorage.removeItem('isAuthenticated');
         localStorage.removeItem('userID');
