@@ -5,17 +5,19 @@ import { withStyles } from '@material-ui/core';
 import Paper from './Paper';
 
 const styles = () => ({
-  root: {
+  paper: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginTop: '10px',
+    marginBottom: "30px"
   }
 });
 
 const Bubble = props => {
+  //console.log(props);
   const { classes, className, children, ...rest } = props;
-  const rootClassName = classNames(classes.root, className);
   return (
-    <Paper {...rest} className={rootClassName} elevation={0} outlined squared={false}>
+    <Paper {...rest} className={classes.paper} outlined elevation={0} squared={false}>
     {children}
     </Paper>
   );
@@ -24,7 +26,9 @@ const Bubble = props => {
 Bubble.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  outlineGrey: PropTypes.bool,
+  outlineRed: PropTypes.bool
 };
 
 export default withStyles(styles)(Bubble);

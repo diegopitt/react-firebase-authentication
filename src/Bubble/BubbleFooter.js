@@ -9,10 +9,10 @@ const styles = theme => ({
     paddingTop: theme.spacing(1),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    backgroundColor: '#CC3300',
-    borderTop: `1px solid #CC3300`,
+    borderTop: `1px solid #e4e6e8`,
     borderBottomLeftRadius: '2px',
-    borderBottomRightRadius: '2px'
+    borderBottomRightRadius: '2px',
+    backgroundColor: '#ffffff'
   },
   noDivider: {
     borderTop: 'none'
@@ -21,6 +21,7 @@ const styles = theme => ({
 
 const BubbleFooter = props => {
   const { classes, className, noDivider, children, ...rest } = props;
+  console.log(props);
   const rootClassName = classNames(
     {
       [classes.root]: true,

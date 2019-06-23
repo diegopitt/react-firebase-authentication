@@ -6,10 +6,10 @@ import { withStyles } from '@material-ui/core';
 const styles = theme => ({
   root: {
     alignItems: 'center',
-    borderBottom: `1px solid #CC3300`,
+    borderBottom: `1px solid #e4e6e8`,
     borderTopLeftRadius: '2px',
     borderTopRightRadius: '2px',
-    backgroundColor: "#CC3300",
+    backgroundColor: "transparent",
     display: 'flex',
     height: '64px',
     justifyContent: 'space-between',
@@ -20,26 +20,31 @@ const styles = theme => ({
   noDivider: {
     borderBottom: 'none'
   },
+  red: {
+    backgroundColor: '#CC3300',
+  },
+  grey: {
+    backgroundColor: '#ffffff',
+  },
   noPadding: {
     padding: 0
   }
 });
 
 const BubbleHeader = props => {
-  const { classes, className, noDivider, noPadding, children, ...rest } = props;
+  const { classes, className, grey, red, noDivider, noPadding, children, ...rest } = props;
   const rootClassName = classNames(
     {
       [classes.root]: true,
       [classes.noDivider]: noDivider,
-      [classes.noPadding]: noPadding
+      [classes.noPadding]: noPadding,
+      [classes.grey]: grey,
+      [classes.red]: red
     },
     className
   );
   return (
-    <div
-      {...rest}
-      className={rootClassName}
-    >
+    <div {...rest} className={rootClassName}>
       {children}
     </div>
   );
@@ -50,7 +55,9 @@ BubbleHeader.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object.isRequired,
   noDivider: PropTypes.bool,
-  noPadding: PropTypes.bool
+  noPadding: PropTypes.bool,
+  red: PropTypes.bool,
+  grey: PropTypes.bool
 };
 
 export default withStyles(styles)(BubbleHeader);

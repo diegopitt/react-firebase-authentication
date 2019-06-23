@@ -69,7 +69,7 @@ const login = authWrapper(class extends Component {
   }
 
   render() {
-    const { classes, className, history, location, match } = this.props;
+    const { classes, className } = this.props;
     const { values } = this.state;
     const rootClassName = classNames(classes.root, className);
     return <GridContainer style={{ minHeight: '100vh', backgroundColor: '#d34f2d' }} container
@@ -78,9 +78,9 @@ const login = authWrapper(class extends Component {
       alignItems="center"
       justify="center">
       <GridItem xs={12} sm={12} md={6}>
-        <Bubble  {...{ className, history, location, match }} className={rootClassName}>
-          <BubbleHeader>
-            <BubbleLabel subtitle="Enter your credentials" title="Log In" />
+        <Bubble outlineRed  {...{ className }} className={rootClassName}>
+          <BubbleHeader red>
+            <BubbleLabel tcolor="#ffc0ab" scolor="#ffffff" subtitle="Enter your credentials" title="Log In" />
           </BubbleHeader>
           <BubbleContent>
             <form className={classes.form}>

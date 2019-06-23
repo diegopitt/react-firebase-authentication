@@ -15,14 +15,15 @@ import Update from "@material-ui/icons/Update";
 import withStyles from "@material-ui/core/styles/withStyles";
 import DataTable from "../Table/Table.js";
 import Accessibility from "@material-ui/icons/Accessibility";
-import {
-  successColor,
-  whiteColor,
-  grayColor,
-  hexToRgb
-} from "../design.js";
+import Bubble from "../Bubble/Bubble.js";
+import BubbleHeader from "../Bubble/BubbleHeader.js";
+import BubbleContent from "../Bubble/BubbleContent.js";
+import BubbleLabel from "../Bubble/BubbleLabel.js";
+import BubbleFooter from "../Bubble/BubbleFooter.js";
+import classNames from 'classnames';
+import { successColor, whiteColor, grayColor, hexToRgb } from "../design.js";
 
-const dashboardStyle = {
+const dashboardStyle = theme => ({
   successText: {
     color: successColor[0]
   },
@@ -71,7 +72,7 @@ const dashboardStyle = {
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "300",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    fontFamily: "'Montserrat', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none",
     "& small": {
@@ -85,7 +86,7 @@ const dashboardStyle = {
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "300",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    fontFamily: "'Montserrat', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none",
     "& small": {
@@ -93,16 +94,23 @@ const dashboardStyle = {
       fontWeight: "400",
       lineHeight: "1"
     }
+  },
+  BubbleFooter: {
+    textAlign: 'right',
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   }
-};
+});
 class jobs extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, className } = this.props;
     return (
       <div>
         <GridContainer>
           <GridItem xs={12} sm={6} md={3}>
-            <Card onClick={() => { this.props.history.push('/dashboard/jobs/1') }}>
+            <Card style={{ cursor: 'pointer' }} onClick={() => { this.props.history.push('/dashboard/jobs/1') }}>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
                   <Store />
@@ -114,16 +122,14 @@ class jobs extends Component {
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Warning />
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Get more space
-                  </a>
+                  <Update />
+                  Just Updated
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
-            <Card onClick={() => { this.props.history.push('/dashboard/jobs/2') }}>
+            <Card style={{ cursor: 'pointer' }} onClick={() => { this.props.history.push('/dashboard/jobs/2') }}>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Store />
@@ -140,7 +146,7 @@ class jobs extends Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
-            <Card onClick={() => { this.props.history.push('/dashboard/jobs/3') }}>
+            <Card style={{ cursor: 'pointer' }} onClick={() => { this.props.history.push('/dashboard/jobs/3') }}>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
                   <Store />
@@ -157,7 +163,7 @@ class jobs extends Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
-            <Card onClick={() => { this.props.history.push('/dashboard/jobs/4') }}>
+            <Card style={{ cursor: 'pointer' }} onClick={() => { this.props.history.push('/dashboard/jobs/4') }}>
               <CardHeader color="info" stats icon>
                 <CardIcon color="info">
                   <Accessibility />
@@ -176,21 +182,21 @@ class jobs extends Component {
         </GridContainer>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
-            <Card>
-              <CardHeader color="primary">
-                <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-                <p className={classes.cardCategoryWhite}>
-                  New employees on 15th September, 2016
-                </p>
-              </CardHeader>
-              <CardBody>
-                <p>Another content</p>
-              </CardBody>
-            </Card>
+            <Bubble outlineGrey>
+              <BubbleHeader grey>
+                <BubbleLabel scolor="#535a60" tcolor="#cc3300" subtitle="Tuesday, June 25" title="Market Details" />
+              </BubbleHeader>
+              <BubbleContent>
+                <p>ddd</p>
+              </BubbleContent>
+              <BubbleFooter>
+                <p>ddd</p>
+              </BubbleFooter>
+            </Bubble>
           </GridItem>
           <GridItem xs={12} sm={12} md={6}>
             <Card>
-              <CardHeader color="warning">
+              <CardHeader color="primary">
                 <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
                 <p className={classes.cardCategoryWhite}>
                   New employees on 15th September, 2016

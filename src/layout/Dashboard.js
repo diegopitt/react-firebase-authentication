@@ -14,10 +14,11 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import Popover from '@material-ui/core/Popover';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuClose from '@material-ui/icons/Close';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+//import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -39,7 +40,9 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: '#CC3300',
+    backgroundColor: '#fff',
+    borderBottom: "1px solid #e2e5ea",
+    boxShadow: "none",
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -89,10 +92,12 @@ const useStyles = makeStyles(theme => ({
     color: 'inherit',
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: 14,
+    color: "#66788a",
   },
   title: {
     flexGrow: 1,
+    color: "#cc3300"
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {

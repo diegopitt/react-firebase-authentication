@@ -57,7 +57,7 @@ class Notifications extends Component {
                 ))}
               </List>
               <div className={classes.footer}>
-                <Button color="primary" component={Link} size="small" to="#" variant="contained">
+                <Button component={Link} size="small" to="#" variant="outlined">
                   See all
                 </Button>
               </div>

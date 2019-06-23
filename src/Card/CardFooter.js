@@ -3,7 +3,6 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-// core components
 const cardFooterStyle = {
   cardFooter: {
     padding: "0",
@@ -49,16 +48,7 @@ const cardFooterStyle = {
 };
 
 function CardFooter({ ...props }) {
-  const {
-    classes,
-    className,
-    children,
-    plain,
-    profile,
-    stats,
-    chart,
-    ...rest
-  } = props;
+  const { classes, className, children, plain, profile, stats, chart, ...rest } = props;
   const cardFooterClasses = classNames({
     [classes.cardFooter]: true,
     [classes.cardFooterPlain]: plain,

@@ -9,7 +9,7 @@ const styles = theme => ({
     paddingRight: theme.spacing(3),
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    
+    backgroundColor: '#ffffff',
     flexGrow: 1
   },
   noPadding: {

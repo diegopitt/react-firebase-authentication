@@ -1,21 +1,9 @@
 import React from "react";
-// nodejs library that concatenates classes
 import classNames from "classnames";
-// nodejs library to set properties for components
 import PropTypes from "prop-types";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
-import {
-  warningCardHeader,
-  successCardHeader,
-  dangerCardHeader,
-  infoCardHeader,
-  primaryCardHeader,
-  roseCardHeader,
-  whiteColor
-} from "../design.js";
-// core components
+import {warningCardHeader, successCardHeader, dangerCardHeader, infoCardHeader, primaryCardHeader, roseCardHeader, whiteColor } from "../design.js";
+
 const cardHeaderStyle = {
   cardHeader: {
     padding: "0.75rem 1.25rem",
@@ -129,16 +117,7 @@ const cardHeaderStyle = {
   }
 };
 function CardHeader({ ...props }) {
-  const {
-    classes,
-    className,
-    children,
-    color,
-    plain,
-    stats,
-    icon,
-    ...rest
-  } = props;
+  const { classes, className, children, color, plain, stats, icon, ...rest } = props;
   const cardHeaderClasses = classNames({
     [classes.cardHeader]: true,
     [classes[color + "CardHeader"]]: color,
